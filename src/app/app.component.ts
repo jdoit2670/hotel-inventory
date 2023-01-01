@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Optional,
+  ViewChild,
+} from '@angular/core';
+import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +13,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  constructor(@Optional() private loggerService: LoggerService) {}
   ngOnInit(): void {
+    this.loggerService?.Log('AppComponent.ngOnInit()');
     this.name.nativeElement.innerText = 'Hilton Hotel';
   }
   // ngAfterViewInit(): void {
