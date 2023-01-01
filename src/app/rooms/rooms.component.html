@@ -56,7 +56,7 @@
   <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
 </div>
 
-<div *ngIf="rooms?.availableRooms">
+<div *ngIf="!hideDetails">
   <app-rooms-list [roomList]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 <!-- {{ selectedRoom ? (selectedRoom | json) : "not selected" }} -->
