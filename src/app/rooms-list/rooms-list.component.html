@@ -1,0 +1,30 @@
+<table id="table-2" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Index</th>
+      <th scope="col">Room Number</th>
+      <th scope="col">Room Type</th>
+      <th scope="col">Room Price</th>
+      <th scope="col">Room Amenities</th>
+      <th scope="col">Checkin Time</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Select Room</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let room of roomList | slice : 0 : 3; let i = index">
+      <th scope="row">{{ i }}</th>
+      <td>{{ room.roomNumber }}</td>
+      <td>{{ room.roomType }}</td>
+      <td>{{ room.price | currency : "LKR" }}</td>
+      <td>{{ room.amenities | titlecase }}</td>
+      <td>{{ room.checkinTime | date }}</td>
+      <td>{{ room.rating | number : "1.0-2" }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="selectRoom(room)">
+          Select
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
