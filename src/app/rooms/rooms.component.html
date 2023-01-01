@@ -66,9 +66,14 @@
   </table>
 </div>
 
+<div>
+  <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
+</div>
+
 <div *ngIf="rooms?.availableRooms">
   <app-rooms-list
     [roomList]="roomList"
+    [title]="title"
     (selectedRoom)="selectRoom($event)"
   ></app-rooms-list>
 </div>

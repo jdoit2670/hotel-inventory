@@ -1,3 +1,4 @@
+<h2>{{ title }}</h2>
 <table id="table-2" class="table table-striped">
   <thead>
     <tr>
@@ -12,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let room of roomList | slice : 0 : 3; let i = index">
+    <tr *ngFor="let room of roomList; let i = index">
       <th scope="row">{{ i }}</th>
       <td>{{ room.roomNumber }}</td>
       <td>{{ room.roomType }}</td>

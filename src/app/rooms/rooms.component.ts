@@ -9,8 +9,10 @@ import { Room, RoomList } from './rooms';
 export class RoomsComponent implements OnInit {
   hotelName = 'The Hotel';
   hideDetails = false;
+  title = 'Room List';
   toggle = () => {
     this.hideDetails = !this.hideDetails;
+    this.title = 'Rooms Lists';
   };
   rooms: Room = {
     totalRooms: 20,
@@ -19,7 +21,7 @@ export class RoomsComponent implements OnInit {
   };
   roomList: RoomList[] = [];
 
-  constructor() { }
+  constructor() {}
   ngOnInit(): void {
     this.roomList = [
       {
@@ -58,5 +60,20 @@ export class RoomsComponent implements OnInit {
   selectedRoom!: RoomList;
   selectRoom(room: RoomList) {
     this.selectedRoom = room;
+  }
+
+  addRoom() {
+    const room: RoomList = {
+      roomNumber: 4,
+      roomType: 'Deluxe Room',
+      amenities: 'Air conditioner, free wifi, tv, bathroom, kitchen',
+      price: 500,
+      photos: 'image4',
+      checkinTime: new Date('11-Nov-2021'),
+      checkoutTime: new Date('12-Nov-2021'),
+      rating: 3.7,
+    };
+
+    this.roomList = [...this.roomList, room];
   }
 }
