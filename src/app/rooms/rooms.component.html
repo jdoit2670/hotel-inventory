@@ -1,26 +1,21 @@
+<app-header></app-header>
 <div [hidden]="hideDetails">
   <h3>Details</h3>
   <p>hotel name: {{ hotelName }}</p>
   <p>
     number of rooms:
-    <span
-      [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
-      [innerText]="rooms.totalRooms ? rooms.totalRooms : 0"
-    ></span>
+    <span [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
+      [innerText]="rooms.totalRooms ? rooms.totalRooms : 0"></span>
   </p>
   <p>
     available number of rooms:
-    <span
-      [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
-      [innerText]="rooms.availableRooms ? rooms.availableRooms : 0"
-    ></span>
+    <span [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
+      [innerText]="rooms.availableRooms ? rooms.availableRooms : 0"></span>
   </p>
   <p>
     booked of rooms:
-    <span
-      [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
-      [innerText]="rooms.bookedRooms ? rooms.bookedRooms : 0"
-    ></span>
+    <span [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
+      [innerText]="rooms.bookedRooms ? rooms.bookedRooms : 0"></span>
   </p>
 </div>
 <button (click)="toggle()">{{ hideDetails ? "show" : "hide" }}</button>
@@ -38,28 +33,19 @@
       <tr>
         <td>number of rooms:</td>
         <td>
-          <input
-            type="number"
-            value="{{ rooms.totalRooms ? rooms.totalRooms : 0 }}"
-          />
+          <input type="number" value="{{ rooms.totalRooms ? rooms.totalRooms : 0 }}" />
         </td>
       </tr>
       <tr>
         <td>available number of rooms:</td>
         <td>
-          <input
-            type="number"
-            value="{{ rooms.availableRooms ? rooms.availableRooms : 0 }}"
-          />
+          <input type="number" value="{{ rooms.availableRooms ? rooms.availableRooms : 0 }}" />
         </td>
       </tr>
       <tr>
         <td>booked rooms:</td>
         <td>
-          <input
-            type="number"
-            value="{{ rooms.bookedRooms ? rooms.bookedRooms : 0 }}"
-          />
+          <input type="number" value="{{ rooms.bookedRooms ? rooms.bookedRooms : 0 }}" />
         </td>
       </tr>
     </tbody>
@@ -71,11 +57,7 @@
 </div>
 
 <div *ngIf="rooms?.availableRooms">
-  <app-rooms-list
-    [roomList]="roomList"
-    [title]="title"
-    (selectedRoom)="selectRoom($event)"
-  ></app-rooms-list>
+  <app-rooms-list [roomList]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 <!-- {{ selectedRoom ? (selectedRoom | json) : "not selected" }} -->
 <div *ngIf="selectedRoom">

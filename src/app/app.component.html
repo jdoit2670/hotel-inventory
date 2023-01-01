@@ -1,8 +1,15 @@
-<h1>Hotel</h1>
-<div [ngSwitch]="role">
-  <div *ngSwitchCase="'User'">Welcome User!</div>
-  <div *ngSwitchCase="'Admin'">
-    <app-rooms></app-rooms>
-  </div>
-  <div *ngSwitchDefault>unauthorized access</div>
+<h1 #name></h1>
+<div>
+  <app-rooms></app-rooms>
 </div>
+<!-- <div [ngSwitch]="role"> -->
+<!--   <div *ngSwitchCase="'User'">Welcome User!</div> -->
+<!--   <div *ngSwitchCase="'Admin'"> -->
+<!--     <app-rooms></app-rooms> -->
+<!--   </div> -->
+<!--   <div *ngSwitchDefault>unauthorized access</div> -->
+<!-- </div> -->
+
+<!-- <div> -->
+<!--   <ng-template #user></ng-template> -->
+<!-- </div> -->
