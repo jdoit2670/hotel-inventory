@@ -9,6 +9,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../rooms.service';
 import { Room, RoomList } from './rooms';
@@ -35,11 +36,31 @@ export class RoomsComponent
   };
   roomList: RoomList[] = [];
 
+  stream = new Observable<string>((observer) => {
+    observer.next('user1');
+    observer.next('user2');
+    observer.next('user3');
+    observer.complete();
+    // observer.error('error');
+  });
+
   @ViewChild(HeaderComponent)
   headerComponent!: HeaderComponent;
 
   @ViewChildren(HeaderComponent)
   headerChildrenComponent!: QueryList<HeaderComponent>;
+
+  ngOnInit(): void {
+    this.stream.subscribe({
+      next: (value) => console.log(value),
+      complete: () => console.log('complete'),
+      error: (err) => console.log(err),
+    });
+    this.stream.subscribe((data) => console.log(data));
+    this.roomsService.getRooms().subscribe((rooms) => {
+      this.roomList = rooms;
+    });
+  }
 
   ngAfterViewChecked(): void {}
 
@@ -55,13 +76,6 @@ export class RoomsComponent
   // roomService = new RoomsService();
 
   constructor(@SkipSelf() private roomsService: RoomsService) {}
-
-  ngOnInit(): void {
-    // console.log(this.headerComponent);
-    this.roomsService.getRooms().subscribe((rooms) => {
-      this.roomList = rooms;
-    });
-  }
 
   selectedRoom!: RoomList;
   selectRoom(room: RoomList) {
@@ -80,6 +94,34 @@ export class RoomsComponent
       rating: 3.7,
     };
 
-    this.roomList = [...this.roomList, room];
+    // this.roomList = [...this.roomList, room];
+    this.roomsService.addRoom(room).subscribe((data) => {
+      this.roomList = data;
+    });
+  }
+
+  editRoom() {
+    const room: RoomList = {
+      roomNumber: '3',
+      roomType: 'Private Suite updated',
+      amenities: 'Air conditioner, free wifi, tv, bathroom, kitchen',
+      price: 16000,
+      photos: 'image4',
+      checkinTime: new Date('11-Nov-2021'),
+      checkoutTime: new Date('12-Nov-2021'),
+      rating: 4.7,
+    };
+
+    this.roomsService.editRoom(room).subscribe((data) => {
+      this.roomList = data;
+    });
+  }
+
+  deleteRoom() {
+    const id: string = '3';
+
+    this.roomsService.deleteRoom(id).subscribe((data) => {
+      this.roomList = data;
+    });
   }
 }
