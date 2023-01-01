@@ -58,7 +58,9 @@ export class RoomsComponent
 
   ngOnInit(): void {
     // console.log(this.headerComponent);
-    this.roomList = this.roomsService.getRooms();
+    this.roomsService.getRooms().subscribe((rooms) => {
+      this.roomList = rooms;
+    });
   }
 
   selectedRoom!: RoomList;
@@ -68,7 +70,7 @@ export class RoomsComponent
 
   addRoom() {
     const room: RoomList = {
-      roomNumber: 4,
+      roomNumber: '4',
       roomType: 'Deluxe Room',
       amenities: 'Air conditioner, free wifi, tv, bathroom, kitchen',
       price: 500,
