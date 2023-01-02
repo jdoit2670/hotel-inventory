@@ -11,7 +11,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { catchError, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../rooms.service';
 import { Room, RoomList } from './rooms';
@@ -22,7 +22,8 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.css'],
 })
 export class RoomsComponent
-  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy {
+  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy
+{
   hotelName = 'The Hotel';
   hideDetails = false;
   title = 'Room List';
@@ -54,7 +55,17 @@ export class RoomsComponent
   totalBytes = 0;
   subscription!: Subscription;
 
-  rooms$ = this.roomsService.getRooms$;
+  error$ = new Subject<string>();
+
+  getError$ = this.error$.asObservable();
+
+  rooms$ = this.roomsService.getRooms$.pipe(
+    catchError((err) => {
+      // console.log(err);
+      this.error$.next(err.message);
+      return of([]);
+    })
+  );
 
   ngOnInit(): void {
     this.roomsService.getPhotos().subscribe((event) => {
@@ -85,7 +96,7 @@ export class RoomsComponent
     // });
   }
 
-  ngAfterViewChecked(): void { }
+  ngAfterViewChecked(): void {}
 
   ngAfterViewInit(): void {
     this.headerComponent.title = 'Rooms View';
@@ -98,7 +109,7 @@ export class RoomsComponent
 
   // roomService = new RoomsService();
 
-  constructor(@SkipSelf() private roomsService: RoomsService) { }
+  constructor(@SkipSelf() private roomsService: RoomsService) {}
 
   selectedRoom!: RoomList;
   selectRoom(room: RoomList) {

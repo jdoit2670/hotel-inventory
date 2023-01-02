@@ -63,6 +63,8 @@
   <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
 </div>
 
+<h1 *ngIf="getError$ | async as err">{{ err }}</h1>
+
 <div *ngIf="rooms$ | async as rooms">
   <app-rooms-list [roomList]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
