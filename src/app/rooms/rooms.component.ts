@@ -4,13 +4,14 @@ import {
   AfterViewInit,
   Component,
   DoCheck,
+  OnDestroy,
   OnInit,
   QueryList,
   SkipSelf,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../rooms.service';
 import { Room, RoomList } from './rooms';
@@ -21,8 +22,7 @@ import { Room, RoomList } from './rooms';
   styleUrls: ['./rooms.component.css'],
 })
 export class RoomsComponent
-  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
-{
+  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy {
   hotelName = 'The Hotel';
   hideDetails = false;
   title = 'Room List';
@@ -52,6 +52,9 @@ export class RoomsComponent
   headerChildrenComponent!: QueryList<HeaderComponent>;
 
   totalBytes = 0;
+  subscription!: Subscription;
+
+  rooms$ = this.roomsService.getRooms$;
 
   ngOnInit(): void {
     this.roomsService.getPhotos().subscribe((event) => {
@@ -77,12 +80,12 @@ export class RoomsComponent
       error: (err) => console.log(err),
     });
     this.stream.subscribe((data) => console.log(data));
-    this.roomsService.getRooms().subscribe((rooms) => {
-      this.roomList = rooms;
-    });
+    // this.roomsService.getRooms$.subscribe((rooms) => {
+    //   this.roomList = rooms;
+    // });
   }
 
-  ngAfterViewChecked(): void {}
+  ngAfterViewChecked(): void { }
 
   ngAfterViewInit(): void {
     this.headerComponent.title = 'Rooms View';
@@ -95,7 +98,7 @@ export class RoomsComponent
 
   // roomService = new RoomsService();
 
-  constructor(@SkipSelf() private roomsService: RoomsService) {}
+  constructor(@SkipSelf() private roomsService: RoomsService) { }
 
   selectedRoom!: RoomList;
   selectRoom(room: RoomList) {
@@ -143,5 +146,11 @@ export class RoomsComponent
     this.roomsService.deleteRoom(id).subscribe((data) => {
       this.roomList = data;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

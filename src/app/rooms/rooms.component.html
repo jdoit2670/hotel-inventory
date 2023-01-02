@@ -1,4 +1,7 @@
 <app-header></app-header>
+
+<!-- {{ rooms$ | async | json }} -->
+
 <div [hidden]="hideDetails">
   <h3>Details</h3>
   <p>hotel name: {{ hotelName }}</p>
@@ -60,8 +63,8 @@
   <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
 </div>
 
-<div *ngIf="!hideDetails">
-  <app-rooms-list [roomList]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+<div *ngIf="rooms$ | async as rooms">
+  <app-rooms-list [roomList]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 <!-- {{ selectedRoom ? (selectedRoom | json) : "not selected" }} -->
 <div *ngIf="selectedRoom">
