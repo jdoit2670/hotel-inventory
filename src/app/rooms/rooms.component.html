@@ -64,6 +64,7 @@
 </div>
 
 <h1 *ngIf="getError$ | async as err">{{ err }}</h1>
+<h1 *ngIf="roomsCount$ | async as count">Number of Rooms: {{ count }}</h1>
 
 <div *ngIf="rooms$ | async as rooms">
   <app-rooms-list [roomList]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>

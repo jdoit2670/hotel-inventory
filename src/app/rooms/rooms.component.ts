@@ -11,7 +11,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { catchError, Observable, of, Subject, Subscription } from 'rxjs';
+import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from '../rooms.service';
 import { Room, RoomList } from './rooms';
@@ -66,6 +66,8 @@ export class RoomsComponent
       return of([]);
     })
   );
+
+  roomsCount$ = this.roomsService.getRooms$.pipe(map((rooms) => rooms.length));
 
   ngOnInit(): void {
     this.roomsService.getPhotos().subscribe((event) => {
