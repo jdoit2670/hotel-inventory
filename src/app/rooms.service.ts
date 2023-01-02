@@ -10,6 +10,7 @@ import { RoomList } from './rooms/rooms';
 })
 export class RoomsService {
   roomList: RoomList[] = [];
+  // headers = new HttpHeaders({ token: '123412414321sffs' });
 
   getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(shareReplay(1));
 
