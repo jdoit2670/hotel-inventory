@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { LocalStorageToken } from './localstorage.token';
+import { InitService } from './init.service';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,11 @@ import { LocalStorageToken } from './localstorage.token';
 export class AppComponent implements OnInit {
   constructor(
     @Optional() private loggerService: LoggerService,
-    @Inject(LocalStorageToken) private localStorage: any
-  ) {}
+    @Inject(LocalStorageToken) private localStorage: any,
+    private initService: InitService
+  ) {
+    console.log(this.initService.config);
+  }
   ngOnInit(): void {
     this.loggerService?.Log('AppComponent.ngOnInit()');
     this.name.nativeElement.innerText = 'Hilton Hotel';
