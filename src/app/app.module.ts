@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './directives/hover.directive';
 import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
-import { RoomsModule } from './rooms/rooms.module';
+// import { RoomsModule } from './rooms/rooms.module';
 import { HeaderModule } from './header/header.module';
 import { RoomsRoutingModule } from './rooms/rooms-routing.module';
 
@@ -55,7 +55,7 @@ function initFactory(initService: InitService) {
     MatIconModule,
     MatListModule,
     FormsModule,
-    RoomsModule,
+    // RoomsModule,
     HeaderModule,
   ],
   providers: [
