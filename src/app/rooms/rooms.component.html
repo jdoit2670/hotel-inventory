@@ -8,36 +8,44 @@
 <button (click)="deleteRoom()">Delete Room</button>
 
 <div *ngIf="rooms$ | async as rooms">
-  <app-rooms-list [roomList]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+  <app-rooms-list
+    [roomList]="rooms"
+    [title]="title"
+    (selectedRoom)="selectRoom($event)"
+  ></app-rooms-list>
 </div>
-<!-- {{ selectedRoom ? (selectedRoom | json) : "not selected" }} -->
+
 <div *ngIf="selectedRoom">
   {{ selectedRoom | json }}
 </div>
-
-<!-- {{ rooms$ | async | json }} -->
 
 <div [hidden]="hideDetails">
   <h2>Details</h2>
   <p>hotel name: {{ hotelName }}</p>
   <p>
     number of rooms:
-    <span [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
-      [innerText]="rooms.totalRooms ? rooms.totalRooms : 0"></span>
+    <span
+      [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
+      [innerText]="rooms.totalRooms ? rooms.totalRooms : 0"
+    ></span>
   </p>
   <p>
     available number of rooms:
-    <span [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
-      [innerText]="rooms.availableRooms ? rooms.availableRooms : 0"></span>
+    <span
+      [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
+      [innerText]="rooms.availableRooms ? rooms.availableRooms : 0"
+    ></span>
   </p>
   <p>
     booked of rooms:
-    <span [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
-      [innerText]="rooms.bookedRooms ? rooms.bookedRooms : 0"></span>
+    <span
+      [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
+      [innerText]="rooms.bookedRooms ? rooms.bookedRooms : 0"
+    ></span>
   </p>
 
   <h2>Change details</h2>
-  <table id="table-1" class="table">
+  <table id="change-details-table" class="table">
     <tbody>
       <tr>
         <td>hotel name:</td>
@@ -48,19 +56,28 @@
       <tr>
         <td>number of rooms:</td>
         <td>
-          <input type="number" value="{{ rooms.totalRooms ? rooms.totalRooms : 0 }}" />
+          <input
+            type="number"
+            value="{{ rooms.totalRooms ? rooms.totalRooms : 0 }}"
+          />
         </td>
       </tr>
       <tr>
         <td>available number of rooms:</td>
         <td>
-          <input type="number" value="{{ rooms.availableRooms ? rooms.availableRooms : 0 }}" />
+          <input
+            type="number"
+            value="{{ rooms.availableRooms ? rooms.availableRooms : 0 }}"
+          />
         </td>
       </tr>
       <tr>
         <td>booked rooms:</td>
         <td>
-          <input type="number" value="{{ rooms.bookedRooms ? rooms.bookedRooms : 0 }}" />
+          <input
+            type="number"
+            value="{{ rooms.bookedRooms ? rooms.bookedRooms : 0 }}"
+          />
         </td>
       </tr>
     </tbody>
@@ -69,5 +86,3 @@
 <button (click)="toggle()">
   {{ hideDetails ? "Show Details" : "Hide Details" }}
 </button>
-
-<!-- <h1>{{ totalBytes }} loaded</h1> -->
