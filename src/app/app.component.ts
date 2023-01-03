@@ -1,10 +1,10 @@
 import {
   Component,
-  ElementRef,
+  // ElementRef,
   Inject,
   OnInit,
   Optional,
-  ViewChild,
+  // ViewChild,
 } from '@angular/core';
 import { LoggerService } from './logger.service';
 import { LocalStorageToken } from './localstorage.token';
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loggerService?.Log('AppComponent.ngOnInit()');
-    this.name.nativeElement.innerText = 'Hilton Hotel';
+    // this.name.nativeElement.innerText = 'Hilton Hotel';
     this.localStorage.setItem('name', 'Hilton Hotel');
   }
   // ngAfterViewInit(): void {
@@ -37,5 +37,5 @@ export class AppComponent implements OnInit {
   role = 'Admin';
 
   // @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;
-  @ViewChild('name', { static: true }) name!: ElementRef;
+  // @ViewChild('name', { static: true }) name!: ElementRef;
 }

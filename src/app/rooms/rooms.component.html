@@ -1,9 +1,24 @@
 <app-header></app-header>
 
+<h3 *ngIf="getError$ | async as err">{{ err }}</h3>
+<h3 *ngIf="roomsCount$ | async as count">Number of Rooms: {{ count }}</h3>
+
+<button (click)="addRoom()">Add Room</button>
+<button (click)="editRoom()">Edit Room</button>
+<button (click)="deleteRoom()">Delete Room</button>
+
+<div *ngIf="rooms$ | async as rooms">
+  <app-rooms-list [roomList]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+</div>
+<!-- {{ selectedRoom ? (selectedRoom | json) : "not selected" }} -->
+<div *ngIf="selectedRoom">
+  {{ selectedRoom | json }}
+</div>
+
 <!-- {{ rooms$ | async | json }} -->
 
 <div [hidden]="hideDetails">
-  <h3>Details</h3>
+  <h2>Details</h2>
   <p>hotel name: {{ hotelName }}</p>
   <p>
     number of rooms:
@@ -20,15 +35,8 @@
     <span [ngStyle]="{ color: rooms.totalRooms ? 'green' : 'red' }"
       [innerText]="rooms.bookedRooms ? rooms.bookedRooms : 0"></span>
   </p>
-</div>
-<button (click)="toggle()">{{ hideDetails ? "show" : "hide" }}</button>
-<button (click)="editRoom()">Edit Room</button>
-<button (click)="deleteRoom()">Delete Room</button>
 
-<h1>{{ totalBytes }} loaded</h1>
-
-<div>
-  <h3>Change details</h3>
+  <h2>Change details</h2>
   <table id="table-1" class="table">
     <tbody>
       <tr>
@@ -58,18 +66,8 @@
     </tbody>
   </table>
 </div>
+<button (click)="toggle()">
+  {{ hideDetails ? "Show Details" : "Hide Details" }}
+</button>
 
-<div>
-  <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
-</div>
-
-<h1 *ngIf="getError$ | async as err">{{ err }}</h1>
-<h1 *ngIf="roomsCount$ | async as count">Number of Rooms: {{ count }}</h1>
-
-<div *ngIf="rooms$ | async as rooms">
-  <app-rooms-list [roomList]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
-</div>
-<!-- {{ selectedRoom ? (selectedRoom | json) : "not selected" }} -->
-<div *ngIf="selectedRoom">
-  {{ selectedRoom | json }}
-</div>
+<!-- <h1>{{ totalBytes }} loaded</h1> -->

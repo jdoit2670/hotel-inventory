@@ -1,5 +1,4 @@
-import { Component, OnInit, Self } from '@angular/core';
-import { RoomsService } from '../rooms.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-employee',
@@ -10,7 +9,7 @@ import { RoomsService } from '../rooms.service';
 export class EmployeeComponent implements OnInit {
   empName: string = 'John';
 
-  constructor(private roomsService: RoomsService) {}
+  constructor() { }
 
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
