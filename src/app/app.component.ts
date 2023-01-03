@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   //   componentRef.instance.hotelName = 'NewHotel';
   // }
 
-  title = 'hotel-invetory-app';
+  title = 'hotel-inventory-app';
   role = 'Admin';
 
   // @ViewChild('user', { read: ViewContainerRef }) vcr!: ViewContainerRef;
