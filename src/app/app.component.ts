@@ -6,9 +6,9 @@ import {
   Optional,
   // ViewChild,
 } from '@angular/core';
-import { LoggerService } from './logger.service';
+import { LoggerService } from './services/logger.service';
 import { LocalStorageToken } from './localstorage.token';
-import { InitService } from './init.service';
+import { InitService } from './services/init.service';
 
 @Component({
   selector: 'app-root',

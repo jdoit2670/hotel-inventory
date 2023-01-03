@@ -13,8 +13,8 @@ import {
 } from '@angular/core';
 import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
-import { RoomsService } from '../rooms.service';
-import { Room, RoomList } from './rooms';
+import { Room, RoomList } from './rooms.interface';
+import { RoomsService } from './rooms.service';
 
 @Component({
   selector: 'app-rooms',

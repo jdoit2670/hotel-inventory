@@ -9,7 +9,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { RoomList } from '../rooms/rooms';
+import { RoomList } from '../rooms/rooms.interface';
 
 @Component({
   selector: 'app-rooms-list',

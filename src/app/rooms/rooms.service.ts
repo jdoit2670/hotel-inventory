@@ -1,9 +1,9 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { shareReplay } from 'rxjs';
-import { AppConfig } from './AppConfig/appconfig.interface';
-import { APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
-import { RoomList } from './rooms/rooms';
+import { AppConfig } from '../AppConfig/appconfig.interface';
+import { APP_SERVICE_CONFIG } from '../AppConfig/appconfig.service';
+import { RoomList } from './rooms.interface';
 
 @Injectable({
   providedIn: 'root',
