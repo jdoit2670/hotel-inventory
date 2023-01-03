@@ -1,0 +1,74 @@
+{{ room | json }}
+
+<div class="alert alert-success">
+  {{ successMessage }}
+</div>
+
+<form (ngSubmit)="AddRoom()">
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="text"
+      name="roomType"
+      placeholder="Room Type"
+      [(ngModel)]="room.roomType"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="text"
+      name="amenities"
+      placeholder="Amenities"
+      [(ngModel)]="room.amenities"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="number"
+      name="price"
+      placeholder="Price"
+      [(ngModel)]="room.price"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="text"
+      name="photos"
+      placeholder="Photos (provide link)"
+      [(ngModel)]="room.photos"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="datetime"
+      name="checkinTime"
+      placeholder="Check-in time"
+      [(ngModel)]="room.checkinTime"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="datetime"
+      name="checkoutTime"
+      placeholder="Check-out time"
+      [(ngModel)]="room.checkoutTime"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      class="form-control"
+      type="number"
+      name="rating"
+      placeholder="Rating"
+      [(ngModel)]="room.rating"
+    />
+  </div>
+  <div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
