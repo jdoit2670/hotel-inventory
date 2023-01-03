@@ -14,13 +14,13 @@ export class RoomsAddComponent {
     checkinTime: new Date(),
     checkoutTime: new Date(),
     photos: '',
-    price: 0,
-    rating: 0,
+    price: 250,
+    rating: 1,
   };
 
   successMessage: string = '';
 
-  constructor(private roomService: RoomsService) { }
+  constructor(private roomService: RoomsService) {}
 
   AddRoom() {
     this.roomService.addRoom(this.room).subscribe((data) => {
