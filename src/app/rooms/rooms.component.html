@@ -3,7 +3,7 @@
 <h3 *ngIf="getError$ | async as err">{{ err }}</h3>
 <h3 *ngIf="roomsCount$ | async as count">Number of Rooms: {{ count }}</h3>
 
-<button mat-raised-button (click)="addRoom()">Add Room</button>
+<button mat-raised-button routerLink="add">Add Room</button>
 <button mat-raised-button (click)="editRoom()">Edit Room</button>
 <button mat-raised-button (click)="deleteRoom()">Delete Room</button>
 
@@ -14,6 +14,8 @@
 <div *ngIf="selectedRoom">
   {{ selectedRoom | json }}
 </div>
+
+<router-outlet></router-outlet>
 
 <div [hidden]="hideDetails">
   <h2>Details</h2>
