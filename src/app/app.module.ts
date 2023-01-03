@@ -1,12 +1,8 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RoomsListComponent } from './rooms-list/rooms-list.component';
-import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
@@ -22,12 +18,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NavComponent } from './nav/nav.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
-import { RoomsAddComponent } from './rooms-add/rooms-add.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './directives/hover.directive';
 import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
+import { RoomsModule } from './rooms/rooms.module';
+import { HeaderModule } from './header/header.module';
+import { RoomsRoutingModule } from './rooms/rooms-routing.module';
 
 function initFactory(initService: InitService) {
   return () => initService.init();
@@ -36,21 +33,17 @@ function initFactory(initService: InitService) {
 @NgModule({
   declarations: [
     AppComponent,
-    RoomsComponent,
-    RoomsListComponent,
-    HeaderComponent,
     ContainerComponent,
     EmployeeComponent,
     NavComponent,
     NotfoundComponent,
-    RoomsBookingComponent,
-    RoomsAddComponent,
     LoginComponent,
     HoverDirective,
     EmailvalidatorDirective,
   ],
   imports: [
     BrowserModule,
+    RoomsRoutingModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
@@ -62,6 +55,8 @@ function initFactory(initService: InitService) {
     MatIconModule,
     MatListModule,
     FormsModule,
+    RoomsModule,
+    HeaderModule,
   ],
   providers: [
     { provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG },
