@@ -22,8 +22,14 @@ export class BookingComponent implements OnInit {
   constructor(private configService: ConfigService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group(this.bookingProperties);
+    this.bookingForm = this.fb.group(this.bookingProperties, {
+      updateOn: 'blur',
+    });
     this.getBookingData();
+
+    this.bookingForm.valueChanges.subscribe((data) => {
+      console.log(data);
+    });
   }
 
   getBookingData() {
@@ -46,13 +52,16 @@ export class BookingComponent implements OnInit {
       { value: '2', disabled: true },
       { validators: [Validators.required] }
     ),
-    guestEmail: ['', [Validators.required, Validators.email]],
+    guestEmail: [
+      '',
+      { updateOn: 'blur', validators: [Validators.required, Validators.email] },
+    ],
     checkinDate: [new Date()],
     checkoutDate: [new Date()],
     bookingStatus: [''],
     bookingAmount: ['250'],
     bookingDate: [new Date()],
-    mobileNumber: [''],
+    mobileNumber: ['', { updateOn: 'blur' }],
     guestName: ['', [Validators.required, Validators.minLength(5)]],
     address: this.fb.group({
       addressLine1: ['', [Validators.required]],
