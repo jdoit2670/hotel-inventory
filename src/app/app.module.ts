@@ -44,8 +44,8 @@ function initFactory(initService: InitService) {
   ],
   imports: [
     BrowserModule,
-    RoomsRoutingModule,
     AppRoutingModule,
+    RoomsRoutingModule,
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
