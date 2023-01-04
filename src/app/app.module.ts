@@ -24,7 +24,7 @@ import { HoverDirective } from './directives/hover.directive';
 import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directive';
 // import { RoomsModule } from './rooms/rooms.module';
 import { HeaderModule } from './header/header.module';
-import { RoomsRoutingModule } from './rooms/rooms-routing.module';
+// import { RoomsRoutingModule } from './rooms/rooms-routing.module';
 import { RouteConfigToken } from './services/routeConfig.service';
 
 function initFactory(initService: InitService) {
@@ -45,7 +45,7 @@ function initFactory(initService: InitService) {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RoomsRoutingModule,
+    // RoomsRoutingModule,
     NgbModule,
     HttpClientModule,
     BrowserAnimationsModule,
