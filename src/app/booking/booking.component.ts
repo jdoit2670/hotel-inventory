@@ -23,6 +23,11 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group(this.bookingProperties);
+    this.getBookingData();
+  }
+
+  getBookingData() {
+    this.bookingForm.patchValue(this.bookingData);
   }
 
   addGuestControl() {
