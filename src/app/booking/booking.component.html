@@ -79,32 +79,32 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Address Line 1</mat-label>
-        <input type="text" matInput formControlName="addressLine1" placeholder="Address Line 1" />
+        <input type="text" matInput formControlName="addressLine1" placeholder="Address Line 1" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Address Line 2</mat-label>
-        <input type="text" matInput formControlName="addressLine2" placeholder="Address Line 2" />
+        <input type="text" matInput formControlName="addressLine2" placeholder="Address Line 2" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>City</mat-label>
-        <input type="text" matInput formControlName="city" placeholder="City" />
+        <input type="text" matInput formControlName="city" placeholder="City" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>State</mat-label>
-        <input type="text" matInput formControlName="state" placeholder="State" />
+        <input type="text" matInput formControlName="state" placeholder="State" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Country</mat-label>
-        <input type="text" matInput formControlName="country" placeholder="Country" />
+        <input type="text" matInput formControlName="country" placeholder="Country" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Zip Code</mat-label>
-        <input type="text" matInput formControlName="zipCode" placeholder="Zip Code" />
+        <input type="text" matInput formControlName="zipCode" placeholder="Zip Code" required />
       </mat-form-field>
     </mat-expansion-panel>
     <!-- </div> -->
@@ -124,12 +124,12 @@
 
           <mat-form-field class="example-full-width">
             <mat-label>Guest {{ i + 1 }} Name</mat-label>
-            <input type="text" matInput formControlName="guestName" placeholder="Guest {{ i + 1 }} Name" />
+            <input type="text" matInput formControlName="guestName" placeholder="Guest {{ i + 1 }} Name" required />
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Guest {{ i + 1 }} Age</mat-label>
-            <input type="number" matInput formControlName="age" placeholder="Guest {{ i + 1 }} Age" />
+            <input type="number" matInput formControlName="age" placeholder="Guest {{ i + 1 }} Age" required />
           </mat-form-field>
         </mat-expansion-panel>
         <button (click)="removeGuest(i)" mat-button color="primary">
@@ -146,8 +146,14 @@
   <!--   Remove Guest -->
   <!-- </button> -->
   <div class="p15"></div>
-  <button type="submit" mat-raised-button color="primary">Book Room</button>
+  <div>
+    <mat-checkbox formControlName="tnc">TnC</mat-checkbox>
+  </div>
+  <button [disabled]="bookingForm.invalid" type="submit" mat-raised-button color="primary">
+    Book Room
+  </button>
 </form>
+
 <div class="p15"></div>
 <div>
   <button (click)="addPassport()" mat-button color="primary">
