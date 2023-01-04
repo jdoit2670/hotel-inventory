@@ -10,6 +10,7 @@ import { LoggerService } from './services/logger.service';
 import { LocalStorageToken } from './localstorage.token';
 import { InitService } from './services/init.service';
 import { ConfigService } from './services/config.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +22,15 @@ export class AppComponent implements OnInit {
     @Optional() private loggerService: LoggerService,
     @Inject(LocalStorageToken) private localStorage: any,
     private initService: InitService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private router: Router
   ) {
     console.log(this.initService.config);
   }
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      console.log(event);
+    });
     this.loggerService?.Log('AppComponent.ngOnInit()');
     // this.name.nativeElement.innerText = 'Hilton Hotel';
     this.localStorage.setItem('name', 'Hilton Hotel');
