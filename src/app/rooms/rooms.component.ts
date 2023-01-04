@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
+import { ConfigService } from '../services/config.service';
 import { Room, RoomList } from './rooms.interface';
 import { RoomsService } from './rooms.service';
 
@@ -111,7 +112,10 @@ export class RoomsComponent
 
   // roomService = new RoomsService();
 
-  constructor(@SkipSelf() private roomsService: RoomsService) {}
+  constructor(
+    @SkipSelf() private roomsService: RoomsService,
+    private configService: ConfigService
+  ) {}
 
   selectedRoom!: RoomList;
   selectRoom(room: RoomList) {

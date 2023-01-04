@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService } from '../services/config.service';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   title: string = '';
+  constructor(private configService: ConfigService) {}
 }

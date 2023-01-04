@@ -9,6 +9,7 @@ import {
 import { LoggerService } from './services/logger.service';
 import { LocalStorageToken } from './localstorage.token';
 import { InitService } from './services/init.service';
+import { ConfigService } from './services/config.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
   constructor(
     @Optional() private loggerService: LoggerService,
     @Inject(LocalStorageToken) private localStorage: any,
-    private initService: InitService
+    private initService: InitService,
+    private configService: ConfigService
   ) {
     console.log(this.initService.config);
   }
