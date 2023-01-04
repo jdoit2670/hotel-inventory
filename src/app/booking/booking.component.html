@@ -12,54 +12,59 @@
       <div class="p15"></div>
       <mat-form-field class="example-full-width" *ngIf="bookingForm.get('passport')">
         <mat-label>Passport</mat-label>
-        <input type="number" matInput formControlName="passport" placeholder="Passport" required />
+        <input type="number" matInput formControlName="passport" placeholder="Passport" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Room Id</mat-label>
-        <input type="text" matInput formControlName="roomId" placeholder="Room Id" required />
+        <input type="text" matInput formControlName="roomId" placeholder="Room Id" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Guest Name</mat-label>
-        <input type="text" matInput formControlName="guestName" placeholder="Guest Name" required />
+        <input type="text" matInput formControlName="guestName" placeholder="Guest Name" />
+        <mat-hint *ngIf="bookingForm.get('guestName')?.hasError('minlength')">Minimum 5 characters</mat-hint>
+        <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">Minimum 5 characters</mat-error>
+        <mat-hint *ngIf="bookingForm.get('guestName')?.hasError('required')">Required</mat-hint>
+        <mat-error *ngIf="bookingForm.get('guestName')?.hasError('required')">Required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Guest Email</mat-label>
-        <input type="email" matInput formControlName="guestEmail" placeholder="Guest Email" required />
+        <input type="email" matInput formControlName="guestEmail" placeholder="Guest Email" />
+        <mat-hint *ngIf="bookingForm.get('guestEmail')?.hasError('email')">Invalid email</mat-hint>
+        <mat-error *ngIf="bookingForm.get('guestEmail')?.hasError('email')">Invalid email</mat-error>
+        <mat-hint *ngIf="bookingForm.get('guestEmail')?.hasError('required')">Required</mat-hint>
+        <mat-error *ngIf="bookingForm.get('guestEmail')?.hasError('required')">Required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Mobile Number</mat-label>
-        <input type="text" matInput formControlName="mobileNumber" placeholder="Mobile Number" required />
+        <input type="text" matInput formControlName="mobileNumber" placeholder="Mobile Number" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Checkin Date</mat-label>
-        <input matInput [matDatepicker]="checkinPicker" formControlName="checkinDate" placeholder="MM/DD/YYYY"
-          required />
+        <input matInput [matDatepicker]="checkinPicker" formControlName="checkinDate" placeholder="MM/DD/YYYY" />
         <mat-datepicker-toggle matIconSuffix [for]="checkinPicker"></mat-datepicker-toggle>
         <mat-datepicker #checkinPicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Checkout Date</mat-label>
-        <input matInput [matDatepicker]="checkoutPicker" formControlName="checkoutDate" placeholder="MM/DD/YYYY"
-          required />
+        <input matInput [matDatepicker]="checkoutPicker" formControlName="checkoutDate" placeholder="MM/DD/YYYY" />
         <mat-datepicker-toggle matIconSuffix [for]="checkoutPicker"></mat-datepicker-toggle>
         <mat-datepicker #checkoutPicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Booking Amount</mat-label>
-        <input type="number" matInput formControlName="bookingAmount" placeholder="Booking Amount" required />
+        <input type="number" matInput formControlName="bookingAmount" placeholder="Booking Amount" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Booking Date</mat-label>
-        <input matInput [matDatepicker]="bookingPicker" formControlName="bookingDate" placeholder="MM/DD/YYYY"
-          required />
+        <input matInput [matDatepicker]="bookingPicker" formControlName="bookingDate" placeholder="MM/DD/YYYY" />
         <mat-datepicker-toggle matIconSuffix [for]="bookingPicker"></mat-datepicker-toggle>
         <mat-datepicker #bookingPicker></mat-datepicker>
       </mat-form-field>
@@ -79,32 +84,38 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Address Line 1</mat-label>
-        <input type="text" matInput formControlName="addressLine1" placeholder="Address Line 1" required />
+        <input type="text" matInput formControlName="addressLine1" placeholder="Address Line 1" />
+        <mat-hint *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')">Required</mat-hint>
+        <mat-error *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')">Required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Address Line 2</mat-label>
-        <input type="text" matInput formControlName="addressLine2" placeholder="Address Line 2" required />
+        <input type="text" matInput formControlName="addressLine2" placeholder="Address Line 2" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>City</mat-label>
-        <input type="text" matInput formControlName="city" placeholder="City" required />
+        <input type="text" matInput formControlName="city" placeholder="City" />
+        <mat-hint *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')">Required</mat-hint>
+        <mat-error *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')">Required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>State</mat-label>
-        <input type="text" matInput formControlName="state" placeholder="State" required />
+        <input type="text" matInput formControlName="state" placeholder="State" />
+        <mat-hint *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')">Required</mat-hint>
+        <mat-error *ngIf="bookingForm.get('address.addressLine1')?.hasError('required')">Required</mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Country</mat-label>
-        <input type="text" matInput formControlName="country" placeholder="Country" required />
+        <input type="text" matInput formControlName="country" placeholder="Country" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Zip Code</mat-label>
-        <input type="text" matInput formControlName="zipCode" placeholder="Zip Code" required />
+        <input type="text" matInput formControlName="zipCode" placeholder="Zip Code" />
       </mat-form-field>
     </mat-expansion-panel>
     <!-- </div> -->
@@ -124,12 +135,18 @@
 
           <mat-form-field class="example-full-width">
             <mat-label>Guest {{ i + 1 }} Name</mat-label>
-            <input type="text" matInput formControlName="guestName" placeholder="Guest {{ i + 1 }} Name" required />
+            <input type="text" matInput formControlName="guestName" placeholder="Guest {{ i + 1 }} Name" />
+            <mat-hint *ngIf="
+                bookingForm.get(['guests', i, 'guestName'])?.hasError('required')
+              ">Required</mat-hint>
+            <mat-error *ngIf="
+                bookingForm.get(['guests', i, 'guestName'])?.hasError('required')
+              ">Required</mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
             <mat-label>Guest {{ i + 1 }} Age</mat-label>
-            <input type="number" matInput formControlName="age" placeholder="Guest {{ i + 1 }} Age" required />
+            <input type="number" matInput formControlName="age" placeholder="Guest {{ i + 1 }} Age" />
           </mat-form-field>
         </mat-expansion-panel>
         <button (click)="removeGuest(i)" mat-button color="primary">

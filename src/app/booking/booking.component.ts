@@ -19,7 +19,7 @@ export class BookingComponent implements OnInit {
     return this.bookingForm.get('guests') as FormArray;
   }
 
-  constructor(private configService: ConfigService, private fb: FormBuilder) { }
+  constructor(private configService: ConfigService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group(this.bookingProperties);
@@ -27,7 +27,7 @@ export class BookingComponent implements OnInit {
 
   addGuestControl() {
     return this.fb.group({
-      guestName: [''],
+      guestName: ['', [Validators.required]],
       age: new FormControl(''),
     });
   }
@@ -50,10 +50,10 @@ export class BookingComponent implements OnInit {
     mobileNumber: [''],
     guestName: ['', [Validators.required, Validators.minLength(5)]],
     address: this.fb.group({
-      addressLine1: [''],
+      addressLine1: ['', [Validators.required]],
       addressLine2: [''],
-      city: [''],
-      state: [''],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
       country: [''],
       zipCode: [''],
     }),
