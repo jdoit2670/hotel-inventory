@@ -1,10 +1,3 @@
-<p>booking works!</p>
-value: {{ bookingForm.value | json }}
-<br />
-pristine: {{ bookingForm.pristine | json }}
-<br />
-dirty: {{ bookingForm.dirty | json }}
-
 <form class="example-form" [formGroup]="bookingForm" (ngSubmit)="addBooking()">
   <mat-accordion class="example-headers-align" multi>
     <mat-expansion-panel>
@@ -17,107 +10,57 @@ dirty: {{ bookingForm.dirty | json }}
       </mat-expansion-panel-header>
 
       <div class="p15"></div>
+      <mat-form-field class="example-full-width" *ngIf="bookingForm.get('passport')">
+        <mat-label>Passport</mat-label>
+        <input type="number" matInput formControlName="passport" placeholder="Passport" required />
+      </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Room Id</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="roomId"
-          placeholder="Room Id"
-          required
-        />
+        <input type="text" matInput formControlName="roomId" placeholder="Room Id" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Guest Name</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="guestName"
-          placeholder="Guest Name"
-          required
-        />
+        <input type="text" matInput formControlName="guestName" placeholder="Guest Name" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Guest Email</mat-label>
-        <input
-          type="email"
-          matInput
-          formControlName="guestEmail"
-          placeholder="Guest Email"
-          required
-        />
+        <input type="email" matInput formControlName="guestEmail" placeholder="Guest Email" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Mobile Number</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="mobileNumber"
-          placeholder="Mobile Number"
-          required
-        />
+        <input type="text" matInput formControlName="mobileNumber" placeholder="Mobile Number" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Checkin Date</mat-label>
-        <input
-          matInput
-          [matDatepicker]="checkinPicker"
-          formControlName="checkinDate"
-          placeholder="MM/DD/YYYY"
-          required
-        />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="checkinPicker"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="checkinPicker" formControlName="checkinDate" placeholder="MM/DD/YYYY"
+          required />
+        <mat-datepicker-toggle matIconSuffix [for]="checkinPicker"></mat-datepicker-toggle>
         <mat-datepicker #checkinPicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Checkout Date</mat-label>
-        <input
-          matInput
-          [matDatepicker]="checkoutPicker"
-          formControlName="checkoutDate"
-          placeholder="MM/DD/YYYY"
-          required
-        />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="checkoutPicker"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="checkoutPicker" formControlName="checkoutDate" placeholder="MM/DD/YYYY"
+          required />
+        <mat-datepicker-toggle matIconSuffix [for]="checkoutPicker"></mat-datepicker-toggle>
         <mat-datepicker #checkoutPicker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Booking Amount</mat-label>
-        <input
-          type="number"
-          matInput
-          formControlName="bookingAmount"
-          placeholder="Booking Amount"
-          required
-        />
+        <input type="number" matInput formControlName="bookingAmount" placeholder="Booking Amount" required />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Booking Date</mat-label>
-        <input
-          matInput
-          [matDatepicker]="bookingPicker"
-          formControlName="bookingDate"
-          placeholder="MM/DD/YYYY"
-          required
-        />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="bookingPicker"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="bookingPicker" formControlName="bookingDate" placeholder="MM/DD/YYYY"
+          required />
+        <mat-datepicker-toggle matIconSuffix [for]="bookingPicker"></mat-datepicker-toggle>
         <mat-datepicker #bookingPicker></mat-datepicker>
       </mat-form-field>
     </mat-expansion-panel>
@@ -136,22 +79,12 @@ dirty: {{ bookingForm.dirty | json }}
 
       <mat-form-field class="example-full-width">
         <mat-label>Address Line 1</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="addressLine1"
-          placeholder="Address Line 1"
-        />
+        <input type="text" matInput formControlName="addressLine1" placeholder="Address Line 1" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Address Line 2</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="addressLine2"
-          placeholder="Address Line 2"
-        />
+        <input type="text" matInput formControlName="addressLine2" placeholder="Address Line 2" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -161,65 +94,71 @@ dirty: {{ bookingForm.dirty | json }}
 
       <mat-form-field class="example-full-width">
         <mat-label>State</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="state"
-          placeholder="State"
-        />
+        <input type="text" matInput formControlName="state" placeholder="State" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Country</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="country"
-          placeholder="Country"
-        />
+        <input type="text" matInput formControlName="country" placeholder="Country" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Zip Code</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="zipCode"
-          placeholder="Zip Code"
-        />
+        <input type="text" matInput formControlName="zipCode" placeholder="Zip Code" />
       </mat-form-field>
     </mat-expansion-panel>
     <!-- </div> -->
+    <!-- guest -->
+    <div formArrayName="guests">
+      <div *ngFor="let guest of guests.controls; let i = index">
+        <mat-expansion-panel [formGroupName]="i">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Guest {{ i + 1 }}</mat-panel-title>
+            <mat-panel-description>
+              Enter guest {{ i + 1 }} details
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="p15"></div>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Guest {{ i + 1 }} Name</mat-label>
+            <input type="text" matInput formControlName="guestName" placeholder="Guest {{ i + 1 }} Name" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Guest {{ i + 1 }} Age</mat-label>
+            <input type="number" matInput formControlName="age" placeholder="Guest {{ i + 1 }} Age" />
+          </mat-form-field>
+        </mat-expansion-panel>
+        <button (click)="removeGuest(i)" mat-button color="primary">
+          Remove Guest {{ i + 1 }}
+        </button>
+      </div>
+    </div>
   </mat-accordion>
+  <div class="p15"></div>
+  <button type="button" (click)="addGuest()" mat-button color="primary">
+    Add Guest
+  </button>
+  <!-- <button type="button" (click)="removeGuest()" mat-button color="primary"> -->
+  <!--   Remove Guest -->
+  <!-- </button> -->
   <div class="p15"></div>
   <button type="submit" mat-raised-button color="primary">Book Room</button>
 </form>
-<!-- <mat-form-field class="example-full-width"> -->
-<!--   <mat-label>Booking Status</mat-label> -->
-<!--   <input -->
-<!--     type="text" -->
-<!--     matInput -->
-<!--     formControlName="bookingStatus" -->
-<!--     placeholder="Booking Status" -->
-<!--   /> -->
-<!-- </mat-form-field> -->
-
-<!-- <mat-form-field class="example-full-width"> -->
-<!--   <mat-label>Guest Count</mat-label> -->
-<!--   <input -->
-<!--     type="text" -->
-<!--     matInput -->
-<!--     formControlName="guestCount" -->
-<!--     placeholder="Guest Count" -->
-<!--   /> -->
-<!-- </mat-form-field> -->
-<!---->
-<!-- <mat-form-field class="example-full-width"> -->
-<!--   <mat-label>Guest List</mat-label> -->
-<!--   <input -->
-<!--     type="text" -->
-<!--     matInput -->
-<!--     formControlName="guestList" -->
-<!--     placeholder="Guest List" -->
-<!--   /> -->
-<!-- </mat-form-field> -->
+<div class="p15"></div>
+<div>
+  <button (click)="addPassport()" mat-button color="primary">
+    Add Passport
+  </button>
+  <button (click)="deletePassport()" mat-button color="primary">
+    Delete Passport
+  </button>
+</div>
+value: {{ bookingForm.value | json }}
+<br />
+pristine: {{ bookingForm.pristine | json }}
+<br />
+dirty: {{ bookingForm.dirty | json }}
