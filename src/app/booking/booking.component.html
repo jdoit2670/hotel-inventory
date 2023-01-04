@@ -52,8 +52,8 @@ dirty: {{ bookingForm.dirty | json }}
       matInput
       [matDatepicker]="checkinPicker"
       formControlName="checkinDate"
+      placeholder="MM/DD/YYYY"
     />
-    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
     <mat-datepicker-toggle
       matIconSuffix
       [for]="checkinPicker"
@@ -67,8 +67,8 @@ dirty: {{ bookingForm.dirty | json }}
       matInput
       [matDatepicker]="checkoutPicker"
       formControlName="checkoutDate"
+      placeholder="MM/DD/YYYY"
     />
-    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
     <mat-datepicker-toggle
       matIconSuffix
       [for]="checkoutPicker"
@@ -92,8 +92,8 @@ dirty: {{ bookingForm.dirty | json }}
       matInput
       [matDatepicker]="bookingPicker"
       formControlName="bookingDate"
+      placeholder="MM/DD/YYYY"
     />
-    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
     <mat-datepicker-toggle
       matIconSuffix
       [for]="bookingPicker"
