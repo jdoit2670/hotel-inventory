@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,11 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   Login() {
-    if (this.email === 'admin@gmail.com' && this.password === 'admin') {
-      this.router.navigate(['/rooms', 'add']);
-    } else {
-      alert('invalid credentials');
+    if (this.loginService.Login(this.email, this.password)) {
+      this.router.navigate(['/rooms']);
     }
   }
 }
