@@ -13,7 +13,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let room of roomList; let i = index">
+    <tr
+      *ngFor="
+        let room of roomList | filter : (price ? price : 0);
+        let i = index
+      "
+    >
       <th scope="row">{{ i }}</th>
       <td>{{ room.roomNumber }}</td>
       <td>{{ room.roomType }}</td>

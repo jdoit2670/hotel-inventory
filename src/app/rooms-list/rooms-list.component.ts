@@ -15,13 +15,14 @@ import { RoomList } from '../rooms/rooms.interface';
   selector: 'app-rooms-list',
   templateUrl: './rooms-list.component.html',
   styleUrls: ['./rooms-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() roomList: RoomList[] | null = [];
+  @Input() roomList: RoomList[] = [];
   @Input() title: string = '';
+  @Input() price: number | null = 0;
   @Output() selectedRoom = new EventEmitter<RoomList>();
-  constructor() {}
+  constructor() { }
   ngOnDestroy(): void {
     console.log('OnDestroy is called');
   }
@@ -31,7 +32,7 @@ export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
       this.title = changes['title'].currentValue;
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);
   }

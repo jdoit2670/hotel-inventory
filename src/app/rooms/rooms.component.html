@@ -4,7 +4,8 @@
 <!-- <h3 *ngIf="roomsCount$ | async as count">Number of Rooms: {{ count }}</h3> -->
 
 <div *ngIf="rooms$ | async as rooms">
-  <app-rooms-list [roomList]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+  <app-rooms-list [roomList]="rooms" [price]="priceFilter.value" [title]="title"
+    (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 
 <button mat-button color="primary" routerLink="add">Add Room</button>
@@ -13,6 +14,11 @@
 
 <div *ngIf="selectedRoom">
   {{ selectedRoom | json }}
+</div>
+
+<div>
+  {{ priceFilter | json }}
+  <input type="number" class="form-control" placeholder="Price" [formControl]="priceFilter" />
 </div>
 
 <router-outlet></router-outlet>
