@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoomsAddComponent } from '../rooms-add/rooms-add.component';
-import { RoomsBookingComponent } from '../rooms-booking/rooms-booking.component';
+// import { RoomsBookingComponent } from '../rooms-booking/rooms-booking.component';
 import { RoomGuard } from './guards/room.guard';
 import { RoomsComponent } from './rooms.component';
 
@@ -12,7 +12,7 @@ const routes: Routes = [
     canActivateChild: [RoomGuard],
     children: [
       { path: 'add', component: RoomsAddComponent },
-      { path: ':id', component: RoomsBookingComponent },
+      // { path: ':id', component: RoomsBookingComponent },
     ],
   },
 ];

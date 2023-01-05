@@ -6,6 +6,7 @@ import {
   FormArray,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 import { ConfigService } from '../services/config.service';
 import { BookingService } from './booking.service';
@@ -25,11 +26,13 @@ export class BookingComponent implements OnInit {
   constructor(
     private configService: ConfigService,
     private fb: FormBuilder,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group(this.bookingProperties, {
+    const roomId = this.route.snapshot.paramMap.get('roomid');
+    this.bookingForm = this.fb.group(this.bookingProperties(roomId), {
       updateOn: 'blur',
       validators: [CustomValidator.validateDate],
     });
@@ -59,44 +62,48 @@ export class BookingComponent implements OnInit {
     this.guests.push(this.addGuestControl());
   }
 
-  bookingProperties = {
-    roomId: new FormControl(
-      { value: '2', disabled: true },
-      { validators: [Validators.required] }
-    ),
-    guestEmail: [
-      '',
-      { updateOn: 'blur', validators: [Validators.required, Validators.email] },
-    ],
-    checkinDate: [new Date()],
-    checkoutDate: [new Date()],
-    bookingStatus: [''],
-    bookingAmount: ['250'],
-    bookingDate: [new Date()],
-    mobileNumber: ['', { updateOn: 'blur' }],
-    guestName: [
-      '',
-      [
-        Validators.required,
-        Validators.minLength(5),
-        CustomValidator.ValidateName,
-        CustomValidator.ValidateSpecialChar('*'),
-        CustomValidator.ValidateSpecialChar('!'),
+  bookingProperties(roomId: string | null) {
+    return {
+      roomId: new FormControl(
+        { value: roomId, disabled: true },
+        { validators: [Validators.required] }
+      ),
+      guestEmail: [
+        '',
+        {
+          updateOn: 'blur',
+          validators: [Validators.required, Validators.email],
+        },
       ],
-    ],
-    address: this.fb.group({
-      addressLine1: ['', [Validators.required]],
-      addressLine2: [''],
-      city: ['', [Validators.required]],
-      state: ['', [Validators.required]],
-      country: [''],
-      zipCode: [''],
-    }),
-    guests: this.fb.array([this.addGuestControl()]),
-    tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
-  };
+      checkinDate: [new Date()],
+      checkoutDate: [new Date()],
+      bookingStatus: [''],
+      bookingAmount: ['250'],
+      bookingDate: [new Date()],
+      mobileNumber: ['', { updateOn: 'blur' }],
+      guestName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          CustomValidator.ValidateName,
+          CustomValidator.ValidateSpecialChar('*'),
+          CustomValidator.ValidateSpecialChar('!'),
+        ],
+      ],
+      address: this.fb.group({
+        addressLine1: ['', [Validators.required]],
+        addressLine2: [''],
+        city: ['', [Validators.required]],
+        state: ['', [Validators.required]],
+        country: [''],
+        zipCode: [''],
+      }),
+      guests: this.fb.array([this.addGuestControl()]),
+      tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
+    };
+  }
   bookingData = {
-    roomId: '2',
     guestEmail: '',
     checkinDate: new Date(),
     checkoutDate: new Date(),
