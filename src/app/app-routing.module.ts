@@ -22,6 +22,7 @@ const routes: Routes = [
     // canActivate: [LoginGuard],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'comment', loadChildren: () => import('./comment/comment.module').then(m => m.CommentModule) },
   { path: '**', component: NotfoundComponent },
 ];
 
