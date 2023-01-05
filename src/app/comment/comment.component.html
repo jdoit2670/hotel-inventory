@@ -1,1 +1,18 @@
-<p>comment works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">postId</th>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let comment of comment$ | async">
+      <td>{{ comment.id }}</td>
+      <td>{{ comment.postId }}</td>
+      <td>{{ comment.name }}</td>
+      <td>{{ comment.email }}</td>
+    </tr>
+  </tbody>
+</table>
