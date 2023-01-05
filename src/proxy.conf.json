@@ -2,9 +2,6 @@
   "/api": {
     "target": "https://hotel-inv-backend.onrender.com",
     "secure": false,
-    "pathRewrite": {
-      "^/api": ""
-    },
     "changeOrigin": true
   }
 }
