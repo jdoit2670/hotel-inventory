@@ -9,6 +9,7 @@ import {
 import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 import { ConfigService } from '../services/config.service';
 import { BookingService } from './booking.service';
+import { CustomValidator } from './validators/custom-validator';
 
 @Component({
   selector: 'app-booking',
@@ -28,7 +29,10 @@ export class BookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group(this.bookingProperties);
+    this.bookingForm = this.fb.group(this.bookingProperties, {
+      updateOn: 'blur',
+      validators: [CustomValidator.validateDate],
+    });
     this.getBookingData();
 
     // this.bookingForm.valueChanges.subscribe((data) => {
@@ -70,7 +74,16 @@ export class BookingComponent implements OnInit {
     bookingAmount: ['250'],
     bookingDate: [new Date()],
     mobileNumber: ['', { updateOn: 'blur' }],
-    guestName: ['', [Validators.required, Validators.minLength(5)]],
+    guestName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(5),
+        CustomValidator.ValidateName,
+        CustomValidator.ValidateSpecialChar('*'),
+        CustomValidator.ValidateSpecialChar('!'),
+      ],
+    ],
     address: this.fb.group({
       addressLine1: ['', [Validators.required]],
       addressLine2: [''],
@@ -110,7 +123,7 @@ export class BookingComponent implements OnInit {
     //   .subscribe((data) => {
     //     console.log(data);
     //   });
-    // this.bookingForm.reset(this.bookingData);
+    this.bookingForm.reset(this.bookingData);
   }
 
   removeGuest(i: number) {
