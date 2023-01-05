@@ -22,7 +22,7 @@ describe('RoomsComponent', () => {
         ShareddataService,
         {
           provide: APP_SERVICE_CONFIG,
-          useValue: { apiEndpoint: 'http://localhost:3000' },
+          useValue: { apiEndpoint: 'https://hotel-inv-backend.onrender.com' },
         },
         {
           provide: RouteConfigToken,
