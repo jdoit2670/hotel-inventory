@@ -105,7 +105,7 @@ export class RoomsComponent
   ngAfterViewChecked(): void {}
 
   ngAfterViewInit(): void {
-    this.headerComponent.title = 'Rooms';
+    // this.headerComponent.title = 'Rooms';
     // this.headerChildrenComponent.last.title = 'Last Title';
   }
 
