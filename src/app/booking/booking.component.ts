@@ -6,7 +6,9 @@ import {
   FormArray,
   Validators,
 } from '@angular/forms';
+import { exhaustMap, mergeMap, switchMap } from 'rxjs';
 import { ConfigService } from '../services/config.service';
+import { BookingService } from './booking.service';
 
 @Component({
   selector: 'app-booking',
@@ -19,17 +21,23 @@ export class BookingComponent implements OnInit {
     return this.bookingForm.get('guests') as FormArray;
   }
 
-  constructor(private configService: ConfigService, private fb: FormBuilder) {}
+  constructor(
+    private configService: ConfigService,
+    private fb: FormBuilder,
+    private bookingService: BookingService
+  ) {}
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group(this.bookingProperties, {
-      updateOn: 'blur',
-    });
+    this.bookingForm = this.fb.group(this.bookingProperties);
     this.getBookingData();
 
-    this.bookingForm.valueChanges.subscribe((data) => {
-      console.log(data);
-    });
+    // this.bookingForm.valueChanges.subscribe((data) => {
+    //   this.bookingService.bookRoom(data).subscribe(data => {})
+    // });
+
+    this.bookingForm.valueChanges
+      .pipe(exhaustMap((data) => this.bookingService.bookRoom(data)))
+      .subscribe((data) => console.log(data));
   }
 
   getBookingData() {
@@ -97,7 +105,12 @@ export class BookingComponent implements OnInit {
   };
   addBooking() {
     console.log(this.bookingForm.getRawValue());
-    this.bookingForm.reset(this.bookingData);
+    // this.bookingService
+    //   .bookRoom(this.bookingForm.getRawValue())
+    //   .subscribe((data) => {
+    //     console.log(data);
+    //   });
+    // this.bookingForm.reset(this.bookingData);
   }
 
   removeGuest(i: number) {
