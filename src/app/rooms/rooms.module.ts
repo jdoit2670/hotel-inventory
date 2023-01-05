@@ -8,6 +8,7 @@ import { RoomsAddComponent } from '../rooms-add/rooms-add.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderModule } from '../header/header.module';
 import { RouteConfigToken } from '../services/routeConfig.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,13 @@ import { RouteConfigToken } from '../services/routeConfig.service';
     RoomsBookingComponent,
     RoomsAddComponent,
   ],
-  imports: [CommonModule, RoomsRoutingModule, FormsModule, HeaderModule],
+  imports: [
+    CommonModule,
+    RoomsRoutingModule,
+    FormsModule,
+    HeaderModule,
+    MatButtonModule,
+  ],
   providers: [
     {
       provide: RouteConfigToken,

@@ -35,9 +35,9 @@ export class BookingComponent implements OnInit {
     //   this.bookingService.bookRoom(data).subscribe(data => {})
     // });
 
-    this.bookingForm.valueChanges
-      .pipe(exhaustMap((data) => this.bookingService.bookRoom(data)))
-      .subscribe((data) => console.log(data));
+    // this.bookingForm.valueChanges
+    //   .pipe(exhaustMap((data) => this.bookingService.bookRoom(data)))
+    //   .subscribe((data) => console.log(data));
   }
 
   getBookingData() {
